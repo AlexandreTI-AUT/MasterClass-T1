@@ -10,7 +10,7 @@ cypress/downloads/
 
 # Logs and reports
 *.log
-*.json
+
 *.xml
 *.txt
 mochawesome-report/
