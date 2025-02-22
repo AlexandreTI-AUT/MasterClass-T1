@@ -1,25 +1,18 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { faker } from "@faker-js/faker/locale/pt_BR";
+
+Cypress.Commands.add('preencherFormulario', (nome = faker.person.fullName()) => {
+    const telefone = faker.helpers.replaceSymbols('##9########');
+    const dataNascimento = faker.date.birthdate({ min: 13, max: 100, mode: 'age' }).toLocaleDateString('pt-BR').replace(/\//g, '');
+
+    cy.get('[data-testid="input-nome"]').type(nome || '{selectall}{backspace}');
+    cy.get('[data-testid="input-email"]').type(faker.internet.email());
+    cy.get('[data-testid="input-telefone"]').type(telefone);
+    cy.get('[data-testid="input-nascimento"]').type(dataNascimento);
+    cy.get('.genero-opcoes > :nth-child(1) > input').click();
+    cy.get('[data-testid="input-comentario"]').type(faker.lorem.sentence());
+    cy.get('[data-testid="input-senha"]').type(faker.internet.password(8));
+    cy.get('.checkbox-label > input').click();
+    cy.get('[data-testid="btn-submit"]').click();
+
+})
+
