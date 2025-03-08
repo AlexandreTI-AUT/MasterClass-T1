@@ -4,7 +4,7 @@
 
 describe('Criar Conta', () => {
     beforeEach(() => {
-        cy.visit('formulario-cadastro/');
+        cy.visit(Cypress.env('webUrl') + 'formulario-cadastro/');
     })
 
     it.only('Deve preencher o Formulário com sucesso', () => {

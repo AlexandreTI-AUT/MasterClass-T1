@@ -31,5 +31,29 @@ Cypress.Commands.add(
     }
 );
 
+Cypress.Commands.add('criarUsuario', (userData = null) => {
+    const data = userData || {
+        nome: faker.person.fullName(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        administrador: faker.datatype.boolean().toString()
+
+    }
+
+    cy.request({
+        method: 'POST',
+        url: `${Cypress.env('apiUrl')}/usuarios`,
+        headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: data,
+        failOnStatusCode: false
+
+    });
+
+})
+
+
 
 
