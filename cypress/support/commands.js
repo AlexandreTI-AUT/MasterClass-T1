@@ -54,6 +54,55 @@ Cypress.Commands.add('criarUsuario', (userData = null) => {
 
 })
 
+Cypress.Commands.add('listarUsuarios', () => {
+    cy.request({
+        method: 'GET',
+        url: `${Cypress.env('apiUrl')}/usuarios`,
+        headers: {
+            accept: 'application/json',
+        },
+        failOnStatusCode: false
+
+    })
+})
+
+
+Cypress.Commands.add('listarUsuariosId', (userId) => {
+    cy.request({
+        method: 'GET',
+        url: `${Cypress.env('apiUrl')}/usuarios/${userId}`,
+        headers: {
+            accept: 'application/json',
+        },
+        failOnStatusCode: false
+
+    })
+})
+
+
+Cypress.Commands.add('editarUsuario', (userId, updateData = null) => {
+    const data = updateData || {
+        nome: faker.person.fullName(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        administrador: faker.datatype.boolean().toString()
+
+    }
+
+    cy.request({
+        method: 'PUT',
+        url: `${Cypress.env('apiUrl')}/usuarios/${userId}`,
+        headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: data,
+        failOnStatusCode: false
+
+    });
+
+})
+
 
 
 
