@@ -23,7 +23,7 @@ describe('Editar Usuário', () => {
         })
     })
 
-    it.only('Deve editar um usuário randomicamente', () => {
+    it('Deve editar um usuário randomicamente', () => {
         cy.editarUsuario(userId).then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body).to.have.property('message', 'Registro alterado com sucesso')

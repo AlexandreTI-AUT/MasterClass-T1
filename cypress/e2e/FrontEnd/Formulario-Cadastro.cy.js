@@ -7,7 +7,7 @@ describe('Criar Conta', () => {
         cy.visit(Cypress.env('webUrl') + 'formulario-cadastro/');
     })
 
-    it.only('Deve preencher o Formulário com sucesso', () => {
+    it('Deve preencher o Formulário com sucesso', () => {
         cy.preencherFormulario({ genero: 'Masculino', aceitarTermo: true });
 
         cy.get('.success-message').should('have.text', '✅ Cadastro realizado com sucesso!');
