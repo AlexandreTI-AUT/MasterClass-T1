@@ -12,7 +12,7 @@ Este repositório contém automações desenvolvidas para a **MasterClass Automa
 
 ### 🔽 Clonar o repositório:
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone <https://github.com/AlexandreTI-AUT/MasterClass-T1>
 cd <NOME_DO_REPOSITORIO>
 ```
 
