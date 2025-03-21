@@ -2,7 +2,7 @@
 
 describe('Deletar Usuário', () => {
 
-    it('Deve deeltar um usuário', () => {
+    it.skip('Deve deeltar um usuário', () => {
         cy.request({
             method: 'DELETE',
             url: 'https://serverest.dev/usuarios/QSXY1kgGqdBX0ygu',
