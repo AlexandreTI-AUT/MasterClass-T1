@@ -13,7 +13,7 @@ describe('Deletar Usuário', () => {
 
     it('Deve deletar um usuário', () => {
         cy.deletarUsuarios(userId).then((response) => {
-            expect(response.status).to.eq(400)
+            expect(response.status).to.eq(200)
             expect(response.body).to.have.property('message', 'Registro excluído com sucesso')
             cy.log(response.body.message)
 
