@@ -80,12 +80,12 @@ Cypress.Commands.add('listarUsuariosId', (userId) => {
 })
 
 
-Cypress.Commands.add('editarUsuario', (userId, updateData = null) => {
-    const data = updateData || {
-        nome: faker.person.fullName(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
-        administrador: faker.datatype.boolean().toString()
+Cypress.Commands.add('editarUsuario', (userId, updateData = {}) => {
+    const data = {
+        nome: updateData.nome || faker.person.fullName(),
+        email: updateData.email || faker.internet.email(),
+        password: updateData.password || faker.internet.password(),
+        administrador: updateData.administrador || faker.datatype.boolean().toString()
 
     }
 
@@ -101,6 +101,19 @@ Cypress.Commands.add('editarUsuario', (userId, updateData = null) => {
 
     });
 
+})
+
+
+Cypress.Commands.add('deletarUsuarios', (userId) => {
+    cy.request({
+        method: 'DELETE',
+        url: `${Cypress.env('apiUrl')}/usuarios/${userId}`,
+        headers: {
+            accept: 'application/json',
+        },
+        failOnStatusCode: false
+
+    })
 })
 
 

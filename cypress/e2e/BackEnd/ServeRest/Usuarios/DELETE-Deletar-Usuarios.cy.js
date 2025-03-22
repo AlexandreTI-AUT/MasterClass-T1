@@ -1,20 +1,29 @@
 /// <reference types="cypress" />
 
 describe('Deletar Usuário', () => {
+    let userId
 
-    it.skip('Deve deeltar um usuário', () => {
-        cy.request({
-            method: 'DELETE',
-            url: 'https://serverest.dev/usuarios/QSXY1kgGqdBX0ygu',
-            headers: {
-                accept: 'application/json',
+    beforeEach(() => {
+        cy.criarUsuario().then((response) => {
+            userId = response.body._id
 
-            },
-            failOnStatusCode: false
+        })
 
-        }).then((response) => {
+    })
+
+    it('Deve deletar um usuário', () => {
+        cy.deletarUsuarios(userId).then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body).to.have.property('message', 'Registro excluído com sucesso')
+            cy.log(response.body.message)
+
+            cy.listarUsuariosId(userId).then((getResponse) => {
+                expect(getResponse.status).to.eq(400)
+                expect(getResponse.body).to.have.property('message', 'Usuário não encontrado')
+
+            })
+
         })
+
     })
 })
