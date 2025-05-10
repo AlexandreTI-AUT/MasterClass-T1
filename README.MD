@@ -27,5 +27,24 @@ npx cypress open  # Abrir a interface do Cypress para testes manuais
 npx cypress run  # Executar os testes automatizados no modo headless
 ```
 
+
+### 📊 Gerar Relatório Allure
+
+Este projeto utiliza o [**Allure Report**](https://docs.qameta.io/allure/) para gerar relatórios detalhados dos testes automatizados.
+
+#### ✅ Executar testes e gerar relatório:
+
+```bash
+npm run cypress:run        # Executa os testes com geração dos resultados Allure
+npm run allure:generate    # Gera o relatório a partir dos resultados
+npm run allure:open        # Abre o relatório em seu navegador padrão
+```
+
+Após rodar os comandos acima, o relatório ficará disponível em:  
+[http://127.0.0.1:xxxx](http://127.0.0.1:xxxx) (o terminal mostrará a porta exata).
+
+> ⚠️ Certifique-se de que a pasta `allure-results` foi criada após a execução dos testes.
+
+
 ## 🤝 Contribuição
 Sinta-se à vontade para contribuir com melhorias e sugestões! 🚀

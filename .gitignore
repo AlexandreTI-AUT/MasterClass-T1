@@ -5,6 +5,11 @@ cypress/screenshots/
 cypress/videos/
 cypress/downloads/
 
+# Allure results and report folders
+allure-results/
+allure-report/
+
+
 # Environment variables
 .env*
 
